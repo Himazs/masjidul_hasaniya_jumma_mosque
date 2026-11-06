@@ -1,18 +1,22 @@
+<?php
+// index.php - Main Website
+include 'db_connect.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Al-Masjidul Hasaniya Jummah Mosque</title>
+    <title>Al-Masjidul Hasaniyya Jummah Mosque</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Al-Masjidul Hasaniya Mosque Ethungahakotuwa Udubaddawa Kurunegala" name="keywords">
-    <meta content="Official website of Al-Masjidul Hasaniya Jummah Mosque – Ethungahakotuwa, Udubaddawa, Kurunegala District. Daily prayers, Jummah, sermons, Quran classes, and development projects." name="description">
+    <meta content="Al-Masjidul Hasaniyya Mosque Ethungahakotuwa Udubaddawa Kurunegala" name="keywords">
+    <meta content="Official website of Al-Masjidul Hasaniyya Jummah Mosque – Ethungahakotuwa, Udubaddawa, Kurunegala District. Daily prayers, Jummah, sermons, Quran classes, and development projects." name="description">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <!-- Animate CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
@@ -27,20 +31,15 @@
             --gold: #d4af37;
         }
 
-        * {
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Lato', sans-serif;
             color: var(--dark);
             padding-top: 80px;
-            line-height: 1.7;
-            overflow-x: hidden;
+            line-height: 1.8;
         }
 
         h1, h2, h3, h4, h5, h6 {
-            font-family: 'Merriweather', serif;
+            font-family: 'Cinzel', serif;
             font-weight: 700;
         }
 
@@ -53,7 +52,7 @@
         }
 
         .navbar-brand {
-            font-family: 'Merriweather', serif;
+            font-family: 'Cinzel', serif;
             font-weight: 700;
             font-size: 1.8rem;
             color: var(--primary) !important;
@@ -91,8 +90,8 @@
 
         /* Hero Sections */
         .hero-section {
-            background: linear-gradient(rgba(26, 95, 180, 0.85), rgba(26, 95, 180, 0.75)), 
-                        url('img/hero.jpg') center center no-repeat;
+            background: linear-gradient(rgba(0, 128, 128, 0.85), rgba(0, 128, 128, 0.75)), 
+                        url('https://images.unsplash.com/photo-1543362453-624bf73af4de?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center center no-repeat;
             background-size: cover;
             min-height: 85vh;
             display: flex;
@@ -174,7 +173,7 @@
         }
 
         /* Cards */
-        .activity-card, .event-card, .bayans-card {
+        .activity-card, .event-card, .sermon-card {
             transition: all 0.4s ease;
             height: 100%;
             border: none;
@@ -184,7 +183,7 @@
             position: relative;
         }
 
-        .activity-card::before, .event-card::before, .bayans-card::before {
+        .activity-card::before, .event-card::before, .sermon-card::before {
             content: '';
             position: absolute;
             top: 0;
@@ -194,7 +193,7 @@
             background: linear-gradient(90deg, var(--primary), var(--secondary));
         }
 
-        .activity-card:hover, .event-card:hover, .bayans-card:hover {
+        .activity-card:hover, .event-card:hover, .sermon-card:hover {
             transform: translateY(-15px);
             box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
@@ -320,7 +319,7 @@
         .footer {
             background: linear-gradient(135deg, var(--dark), #0f0f0f);
             color: white;
-            padding: 80px 0 0;
+            padding: 80px 0 20px;
             position: relative;
         }
 
@@ -391,7 +390,7 @@
             justify-content: center;
         }
 
-        /* WhatsApp Button - Fixed */
+        /* WhatsApp Button */
         .whatsapp-float {
             position: fixed;
             width: 70px;
@@ -411,8 +410,6 @@
             transition: all 0.4s ease;
             animation: pulse 2s infinite;
             text-decoration: none;
-            border: none;
-            outline: none;
         }
 
         @keyframes pulse {
@@ -430,160 +427,48 @@
 
         /* Responsive Design */
         @media (max-width: 1200px) {
-            .hero-section h1 {
-                font-size: 3.5rem;
-            }
+            .hero-section h1 { font-size: 3.5rem; }
         }
 
         @media (max-width: 992px) {
-            .hero-section {
-                min-height: 70vh;
-                padding: 100px 0 60px;
-            }
-            
-            .hero-section h1 {
-                font-size: 3rem;
-            }
-            
-            .hero-section p.lead {
-                font-size: 1.3rem;
-            }
-            
-            .content-section {
-                padding: 80px 0;
-            }
-            
-            .navbar-brand {
-                font-size: 1.6rem;
-            }
+            .hero-section { min-height: 70vh; padding: 100px 0 60px; }
+            .hero-section h1 { font-size: 3rem; }
+            .hero-section p.lead { font-size: 1.3rem; }
+            .content-section { padding: 80px 0; }
+            .navbar-brand { font-size: 1.6rem; }
         }
 
         @media (max-width: 768px) {
-            body {
-                padding-top: 70px;
-            }
-            
-            .hero-section {
-                min-height: 60vh;
-                padding: 80px 0 40px;
-            }
-            
-            .hero-section h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-section p.lead {
-                font-size: 1.2rem;
-            }
-            
-            .content-section {
-                padding: 60px 0;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-            
-            .whatsapp-float {
-                width: 60px;
-                height: 60px;
-                bottom: 20px;
-                left: 20px;
-                font-size: 30px;
-            }
-            
-            .back-to-top {
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
-            }
-            
-            .btn-primary, .btn-secondary, .btn-outline-light {
-                padding: 12px 25px;
-                font-size: 0.9rem;
-            }
-            
-            .navbar-nav .nav-link {
-                margin: 5px 0;
-                text-align: center;
-            }
-            
-            .navbar-collapse {
-                background: rgba(255, 255, 255, 0.98);
-                padding: 20px;
-                border-radius: 10px;
-                margin-top: 10px;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            }
+            body { padding-top: 70px; }
+            .hero-section { min-height: 60vh; padding: 80px 0 40px; }
+            .hero-section h1 { font-size: 2.5rem; }
+            .hero-section p.lead { font-size: 1.2rem; }
+            .content-section { padding: 60px 0; }
+            .section-title { font-size: 1.8rem; }
+            .whatsapp-float { width: 60px; height: 60px; bottom: 20px; left: 20px; font-size: 30px; }
+            .back-to-top { width: 50px; height: 50px; font-size: 1.2rem; }
+            .btn-primary, .btn-secondary, .btn-outline-light { padding: 12px 25px; font-size: 0.9rem; }
+            .navbar-nav .nav-link { margin: 5px 0; text-align: center; }
+            .navbar-collapse { background: rgba(255, 255, 255, 0.98); padding: 20px; border-radius: 10px; margin-top: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
         }
 
         @media (max-width: 576px) {
-            .hero-section {
-                min-height: 50vh;
-                padding: 70px 0 30px;
-            }
-            
-            .hero-section h1 {
-                font-size: 2rem;
-            }
-            
-            .hero-section p.lead {
-                font-size: 1rem;
-            }
-            
-            .content-section {
-                padding: 40px 0;
-            }
-            
-            .section-title {
-                font-size: 1.6rem;
-            }
-            
-            .quran-verse .arabic {
-                font-size: 1.8rem;
-            }
-            
-            .quran-verse .translation {
-                font-size: 1rem;
-            }
-            
-            .icon-box {
-                width: 70px;
-                height: 70px;
-            }
-            
-            .icon-box i {
-                font-size: 2rem;
-            }
-            
-            .event-date {
-                width: 70px;
-                height: 70px;
-                margin-right: 15px;
-            }
-            
-            .event-date .day {
-                font-size: 1.5rem;
-            }
-            
-            .event-date .month {
-                font-size: 0.9rem;
-            }
+            .hero-section { min-height: 50vh; padding: 70px 0 30px; }
+            .hero-section h1 { font-size: 2rem; }
+            .hero-section p.lead { font-size: 1rem; }
+            .content-section { padding: 40px 0; }
+            .section-title { font-size: 1.6rem; }
+            .icon-box { width: 70px; height: 70px; }
+            .icon-box i { font-size: 2rem; }
+            .event-date { width: 70px; height: 70px; margin-right: 15px; }
+            .event-date .day { font-size: 1.5rem; }
+            .event-date .month { font-size: 0.9rem; }
         }
 
         @media (max-width: 400px) {
-            .hero-section h1 {
-                font-size: 1.8rem;
-            }
-            
-            .navbar-brand {
-                font-size: 1.4rem;
-            }
-            
-            .btn-primary, .btn-secondary, .btn-outline-light {
-                padding: 10px 20px;
-                font-size: 0.85rem;
-            }
+            .hero-section h1 { font-size: 1.8rem; }
+            .navbar-brand { font-size: 1.4rem; }
+            .btn-primary, .btn-secondary, .btn-outline-light { padding: 10px 20px; font-size: 0.85rem; }
         }
 
         /* Quran Verse Styling */
@@ -700,60 +585,16 @@
             transform: scale(1.05);
         }
 
-        /* Floating Elements */
-        .floating-elements {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
+        /* Form Styling */
+        .form-control {
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
         }
 
-        .floating-element {
-            position: absolute;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-            100% { transform: translateY(0) rotate(360deg); }
-        }
-
-        .floating-element:nth-child(1) {
-            width: 50px;
-            height: 50px;
-            top: 10%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .floating-element:nth-child(2) {
-            width: 30px;
-            height: 30px;
-            top: 20%;
-            right: 10%;
-            animation-delay: 1s;
-        }
-
-        .floating-element:nth-child(3) {
-            width: 40px;
-            height: 40px;
-            bottom: 20%;
-            left: 15%;
-            animation-delay: 2s;
-        }
-
-        .floating-element:nth-child(4) {
-            width: 25px;
-            height: 25px;
-            bottom: 10%;
-            right: 15%;
-            animation-delay: 3s;
+        .form-control:focus {
+            box-shadow: 0 5px 20px rgba(0,128,128,0.3);
+            border-color: var(--primary);
         }
     </style>
 </head>
@@ -766,8 +607,8 @@
         </div>
     </div>
 
-    <!-- WhatsApp Float Button - Fixed -->
-    <a href="https://wa.me/94767646614?text=Assalamu%20Alaikum!%20I%20would%20like%20to%20get%20more%20information%20about%20Al-Masjidul%20Hasaniyya%20Mosque" class="whatsapp-float" target="_blank" aria-label="Contact us on WhatsApp">
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/94767646614?text=Assalamu%20Alaikum!%20I%20would%20like%20to%20get%20more%20information%20about%20Al-Masjidul%20Hasaniyya%20Mosque" class="whatsapp-float" target="_blank" title="Contact us on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -777,7 +618,7 @@
             <a class="navbar-brand" href="#" onclick="showPage('home')">
                 <i class="fas fa-mosque me-2"></i>AL-MASJIDUL<span class="text-primary"> HASSANIYYA</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -795,7 +636,10 @@
                         <a class="nav-link" href="#" onclick="showPage('events')">Events</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="showPage('bayans')">Bayans</a>
+                        <a class="nav-link" href="#" onclick="showPage('bayan')">Bayan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showPage('gallery')">Gallery</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" onclick="showPage('contact')">Contact</a>
@@ -810,120 +654,34 @@
 
     <!-- Home Page -->
     <section id="home" class="page-section active">
-        <!-- Hero -->
         <div class="hero-section">
-            <div class="floating-elements">
-                <div class="floating-element"></div>
-                <div class="floating-element"></div>
-                <div class="floating-element"></div>
-                <div class="floating-element"></div>
-            </div>
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
-                        <div class="hero-content animate__animated animate__fadeInUp">
-                            <h1>Al-Masjidul Hasaniyya Jummah Mosque</h1>
-                            <p class="lead">"Purity Comes From Faith — Together We Build Our House of Worship."</p>
-                            <div class="d-flex flex-wrap gap-3">
-                                <a href="#" class="btn btn-light btn-lg" onclick="showPage('about')">Learn More</a>
-                                <a href="#" class="btn btn-outline-light btn-lg" onclick="showPage('contact')">Visit Us</a>
-                            </div>
-                        </div>
+                        <h1 class="animate__animated animate__fadeIn">Welcome to Al-Masjidul Hasaniyya</h1>
+                        <p class="lead animate__animated animate__fadeIn">A place of worship, community, and spiritual growth in Ethungahakotuwa, Udubaddawa, Kurunegala District.</p>
+                        <a href="#" onclick="showPage('donate')" class="btn btn-primary animate__animated animate__fadeIn">Support Our Mosque</a>
+                        <a href="#" onclick="showPage('activities')" class="btn btn-outline-light ms-2 animate__animated animate__fadeIn">Our Activities</a>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- About Preview -->
         <div class="content-section">
             <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 mb-5 mb-lg-0">
-                        <div class="row g-3">
-                            <div class="col-6">
-                                <div class="mosque-gallery">
-                                    <div class="img-placeholder">
-                                        <i class="fas fa-mosque"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="mosque-gallery mb-4" style="height: 180px;">
-                                    <div class="img-placeholder">
-                                        <i class="fas fa-users"></i>
-                                    </div>
-                                </div>
-                                <div class="mosque-gallery" style="height: 180px;">
-                                    <div class="img-placeholder">
-                                        <i class="fas fa-quran"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="quran-verse">
+                    <div class="arabic">إِنَّمَا يَعْمُرُ مَسَاجِدَ اللَّهِ مَنْ آمَنَ بِاللَّهِ وَالْيَوْمِ الْآخِرِ</div>
+                    <div class="translation">"The mosques of Allah are only to be maintained by those who believe in Allah and the Last Day..." [Quran 9:18]</div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h2 class="section-title">Our Mission</h2>
+                        <p>We aim to foster a vibrant Muslim community through worship, education, and social welfare, serving as a beacon of faith and unity in Kurunegala.</p>
                     </div>
                     <div class="col-lg-6">
-                        <h2 class="section-title">Serving Faith, Knowledge & Community</h2>
-                        <p class="mb-4">
-                            The Al-Masjidul Hasaniyya Jummah Mosque, located in Ethungahakotuwa, Udubaddawa, Kurunegala District, serves more than 1000 families. It hosts the five daily prayers, Jummah, religious bayans, Tharbiyya training, and a Qur'anic Madrasah for children.
-                        </p>
-                        <p class="mb-4">
-                            Registered under the Wakf Department (No. R-626-KU-71), the mosque faces challenges such as space limitations and flooding during the rainy season. With approvals from the local council and the Department of Muslim Religious & Cultural Affairs, a new two-storey mosque (80×60 ft) for 2000 worshippers is under construction.
-                        </p>
-                        <a href="#" class="btn btn-primary btn-lg" onclick="showPage('about')">Read More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Quran Verse -->
-        <div class="container">
-            <div class="quran-verse animate__animated animate__fadeIn">
-                <div class="arabic">وَأَقِيمُوا الصَّلَاةَ وَآتُوا الزَّكَاةَ وَارْكَعُوا مَعَ الرَّاكِعِينَ</div>
-                <div class="translation">"And establish prayer, give zakah, and bow with those who bow." — Qur'an 2:43</div>
-            </div>
-        </div>
-
-        <!-- Activities Preview -->
-        <div class="content-section bg-light">
-            <div class="container">
-                <div class="text-center mb-5">
-                    <h2 class="section-title text-center">Religious & Community Programs</h2>
-                    <p class="lead">We offer a wide range of religious, educational, and community programs to serve our community and strengthen faith.</p>
-                </div>
-                <div class="row g-4">
-                    <div class="col-md-4">
-                        <div class="activity-card bg-white rounded p-4 text-center animate__animated animate__fadeInUp" style="animation-delay: 0.1s;">
-                            <div class="icon-box">
-                                <i class="fas fa-praying-hands"></i>
-                            </div>
-                            <h4>Daily Prayers</h4>
-                            <p>Five daily congregational prayers and Jummah services for spiritual growth and community unity.</p>
-                            <a href="#" class="btn btn-outline-primary mt-3" onclick="showPage('activities')">Learn More</a>
+                        <div class="mosque-gallery">
+                            <img src="https://images.unsplash.com/photo-1543362453-624bf73af4de?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Mosque">
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="activity-card bg-white rounded p-4 text-center animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
-                            <div class="icon-box">
-                                <i class="fas fa-book-quran"></i>
-                            </div>
-                            <h4>Quran Classes</h4>
-                            <p>Comprehensive Quranic education for children including recitation, memorization, and Islamic studies.</p>
-                            <a href="#" class="btn btn-outline-primary mt-3" onclick="showPage('activities')">Learn More</a>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="activity-card bg-white rounded p-4 text-center animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">
-                            <div class="icon-box">
-                                <i class="fas fa-hands-helping"></i>
-                            </div>
-                            <h4>Community Support</h4>
-                            <p>Charity programs, family assistance, and social welfare projects serving our community.</p>
-                            <a href="#" class="btn btn-outline-primary mt-3" onclick="showPage('activities')">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center mt-5">
-                    <a href="#" class="btn btn-primary btn-lg" onclick="showPage('activities')">View All Activities</a>
                 </div>
             </div>
         </div>
@@ -931,109 +689,35 @@
 
     <!-- About Page -->
     <section id="about" class="page-section">
-        <div class="hero-section">
+        <div class="hero-section" style="background-image: linear-gradient(rgba(0, 128, 128, 0.85), rgba(0, 128, 128, 0.75)), url('https://images.unsplash.com/photo-1519742866993-66d3cf21bb17?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
-                        <div class="hero-content">
-                            <h1>About Our Mosque</h1>
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#" onclick="showPage('home')" class="text-white">Home</a></li>
-                                    <li class="breadcrumb-item text-white-50 active">About</li>
-                                </ol>
-                            </nav>
-                        </div>
+                        <h1>About Us</h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#" onclick="showPage('home')" class="text-white">Home</a></li>
+                                <li class="breadcrumb-item text-white-50 active">About</li>
+                            </ol>
+                        </nav>
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="content-section">
             <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6">
-                        <h2 class="section-title">Serving Since 1971</h2>
-                        <p class="mb-4">
-                            Al-Masjidul Hasaniyya Jummah Mosque was established in 1971 to serve the Muslim community in Ethungahakotuwa village and surrounding areas. Over the decades, it has grown from a small prayer space to a vibrant community center serving over 1000 families.
-                        </p>
-                        <p class="mb-4">
-                            The mosque is officially registered with the Wakf Department under registration number R-626-KU-71 and operates under the guidance of the Department of Muslim Religious & Cultural Affairs.
-                        </p>
-                        <div class="row mb-4">
-                            <div class="col-sm-6">
-                                <div class="d-flex align-items-center mb-3">
-                                    <i class="fas fa-check text-primary me-3"></i>
-                                    <span>Daily Congregational Prayers</span>
-                                </div>
-                                <div class="d-flex align-items-center mb-3">
-                                    <i class="fas fa-check text-primary me-3"></i>
-                                    <span>Friday Jummah Services</span>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="d-flex align-items-center mb-3">
-                                    <i class="fas fa-check text-primary me-3"></i>
-                                    <span>Quran & Islamic Classes</span>
-                                </div>
-                                <div class="d-flex align-items-center mb-3">
-                                    <i class="fas fa-check text-primary me-3"></i>
-                                    <span>Community Support Programs</span>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#" class="btn btn-primary btn-lg" onclick="showPage('contact')">Contact Us</a>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="row g-3">
-                            <div class="col-6">
-                                <div class="mosque-gallery">
-                                    <div class="img-placeholder">
-                                        <i class="fas fa-mosque"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="mosque-gallery mb-4" style="height: 180px;">
-                                    <div class="img-placeholder">
-                                        <i class="fas fa-users"></i>
-                                    </div>
-                                </div>
-                                <div class="mosque-gallery" style="height: 180px;">
-                                    <div class="img-placeholder">
-                                        <i class="fas fa-quran"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="text-center mb-5">
+                    <h2 class="section-title text-center">Our Story</h2>
+                    <p class="lead">Al-Masjidul Hasaniyya is a cornerstone of the Muslim community in Ethungahakotuwa, dedicated to worship, education, and service.</p>
                 </div>
-            </div>
-        </div>
-
-        <!-- Development Project -->
-        <div class="content-section bg-light">
-            <div class="container">
-                <div class="row align-items-center">
+                <div class="row">
                     <div class="col-lg-6">
-                        <div class="mosque-gallery" style="height: 450px;">
-                            <div class="img-placeholder">
-                                <i class="fas fa-hard-hat"></i>
-                            </div>
-                        </div>
+                        <h3>History</h3>
+                        <p>Established in 1990, our mosque has grown from a small prayer space to a vibrant community center, serving hundreds of worshippers weekly.</p>
                     </div>
                     <div class="col-lg-6">
-                        <h2 class="section-title">New Mosque Construction</h2>
-                        <p class="mb-4">
-                            To accommodate our growing community and overcome space limitations, we are constructing a new two-storey mosque measuring 80×60 feet with a capacity for 2000 worshippers.
-                        </p>
-                        <div class="progress mb-4">
-                            <div class="progress-bar" style="width: 60%">60% Complete</div>
-                        </div>
-                        <p class="mb-4">
-                            The foundation and pillars have been completed through community efforts. We now need your support to complete the interior and finishing work.
-                        </p>
-                        <a href="#" class="btn btn-primary btn-lg" onclick="showPage('donate')">Support Our Project</a>
+                        <h3>Vision</h3>
+                        <p>We strive to create a nurturing environment for spiritual growth, Islamic education, and community welfare, guided by the teachings of the Quran and Sunnah.</p>
                     </div>
                 </div>
             </div>
@@ -1042,31 +726,28 @@
 
     <!-- Activities Page -->
     <section id="activities" class="page-section">
-        <div class="hero-section">
+        <div class="hero-section" style="background-image: linear-gradient(rgba(0, 128, 128, 0.85), rgba(0, 128, 128, 0.75)), url('https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80');">
+            <img src="https://images.unsplash.com/photo-1601597111152-f4ff63471b0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80" alt="Activities Overlay" class="hero-image-overlay">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
-                        <div class="hero-content">
-                            <h1>Our Activities</h1>
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#" onclick="showPage('home')" class="text-white">Home</a></li>
-                                    <li class="breadcrumb-item text-white-50 active">Activities</li>
-                                </ol>
-                            </nav>
-                        </div>
+                        <h1>Our Activities</h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#" onclick="showPage('home')" class="text-white">Home</a></li>
+                                <li class="breadcrumb-item text-white-50 active">Activities</li>
+                            </ol>
+                        </nav>
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="content-section">
             <div class="container">
                 <div class="text-center mb-5">
                     <h2 class="section-title text-center">Religious & Community Activities</h2>
                     <p class="lead">We offer a wide range of religious, educational, and community programs to serve our community and strengthen faith.</p>
                 </div>
-
                 <div class="row g-4">
                     <div class="col-lg-4 col-md-6">
                         <div class="activity-card bg-white rounded p-4 text-center">
@@ -1078,16 +759,24 @@
                             <div class="bg-light p-3 rounded">
                                 <h6 class="text-primary">Prayer Times</h6>
                                 <ul class="list-unstyled small">
-                                    <li>Fajr: 5:00 AM</li>
-                                    <li>Dhuhr: 12:30 PM</li>
-                                    <li>Asr: 4:00 PM</li>
-                                    <li>Maghrib: Sunset</li>
-                                    <li>Isha: 7:30 PM</li>
+                                    <?php
+                                    $sql = "SELECT * FROM prayer_times ORDER BY id DESC LIMIT 1";
+                                    $result = $conn->query($sql);
+                                    if ($result->num_rows > 0) {
+                                        $row = $result->fetch_assoc();
+                                        echo "<li>Fajr: " . htmlspecialchars($row['fajr']) . "</li>";
+                                        echo "<li>Dhuhr: " . htmlspecialchars($row['dhuhr']) . "</li>";
+                                        echo "<li>Asr: " . htmlspecialchars($row['asr']) . "</li>";
+                                        echo "<li>Maghrib: " . htmlspecialchars($row['maghrib']) . "</li>";
+                                        echo "<li>Isha: " . htmlspecialchars($row['isha']) . "</li>";
+                                    } else {
+                                        echo "<li>No times available</li>";
+                                    }
+                                    ?>
                                 </ul>
                             </div>
                         </div>
                     </div>
-
                     <div class="col-lg-4 col-md-6">
                         <div class="activity-card bg-white rounded p-4 text-center">
                             <div class="icon-box">
@@ -1098,14 +787,17 @@
                             <div class="bg-light p-3 rounded">
                                 <h6 class="text-primary">Friday Schedule</h6>
                                 <ul class="list-unstyled small">
-                                    <li>First Jama'ah: 12:30 PM</li>
-                                    <li>Second Jama'ah: 1:15 PM</li>
+                                    <?php
+                                    if (isset($row)) {
+                                        echo "<li>First Jama'ah: " . htmlspecialchars($row['jummah1']) . "</li>";
+                                        echo "<li>Second Jama'ah: " . htmlspecialchars($row['jummah2']) . "</li>";
+                                    }
+                                    ?>
                                     <li>Khutbah in Tamil & Sinhala</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-
                     <div class="col-lg-4 col-md-6">
                         <div class="activity-card bg-white rounded p-4 text-center">
                             <div class="icon-box">
@@ -1123,7 +815,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col-lg-4 col-md-6">
                         <div class="activity-card bg-white rounded p-4 text-center">
                             <div class="icon-box">
@@ -1141,16 +832,15 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col-lg-4 col-md-6">
                         <div class="activity-card bg-white rounded p-4 text-center">
                             <div class="icon-box">
                                 <i class="fas fa-microphone-alt"></i>
                             </div>
-                            <h4 class="mb-3">Religious Bayans</h4>
+                            <h4 class="mb-3">Religious Sermons</h4>
                             <p class="mb-4">Weekly Bayan sessions for spiritual guidance, covering various Islamic topics for both men and women.</p>
                             <div class="bg-light p-3 rounded">
-                                <h6 class="text-primary">Bayan Schedule</h6>
+                                <h6 class="text-primary">Sermon Schedule</h6>
                                 <ul class="list-unstyled small">
                                     <li>Men: Friday after Maghrib</li>
                                     <li>Women: Sunday 10:00 AM</li>
@@ -1159,7 +849,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col-lg-4 col-md-6">
                         <div class="activity-card bg-white rounded p-4 text-center">
                             <div class="icon-box">
@@ -1184,181 +873,153 @@
 
     <!-- Events Page -->
     <section id="events" class="page-section">
-        <div class="hero-section">
+        <div class="hero-section" style="background-image: linear-gradient(rgba(0, 128, 128, 0.85), rgba(0, 128, 128, 0.75)), url('https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80');">
+            <img src="https://images.unsplash.com/photo-1543362453-624bf73af4de?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Events Overlay" class="hero-image-overlay">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
-                        <div class="hero-content">
-                            <h1>Upcoming Events</h1>
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#" onclick="showPage('home')" class="text-white">Home</a></li>
-                                    <li class="breadcrumb-item text-white-50 active">Events</li>
-                                </ol>
-                            </nav>
-                        </div>
+                        <h1>Upcoming Events</h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#" onclick="showPage('home')" class="text-white">Home</a></li>
+                                <li class="breadcrumb-item text-white-50 active">Events</li>
+                            </ol>
+                        </nav>
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="content-section">
             <div class="container">
                 <div class="text-center mb-5">
                     <h2 class="section-title text-center">Community Programs & Special Occasions</h2>
                     <p class="lead">Join us for these special events that bring our community together in faith and fellowship.</p>
                 </div>
-
                 <div class="row g-4">
-                    <div class="col-lg-6">
-                        <div class="event-card bg-white rounded p-4 d-flex">
-                            <div class="event-date">
-                                <div class="day">15</div>
-                                <div class="month">MAR</div>
-                            </div>
-                            <div>
-                                <h4>Ramadan Preparation Workshop</h4>
-                                <p class="text-muted"><i class="fas fa-clock me-2"></i>4:00 PM - 6:00 PM</p>
-                                <p>Learn how to make the most of the blessed month of Ramadan with spiritual preparation and community service opportunities.</p>
-                                <a href="#" class="btn btn-sm btn-primary">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <div class="event-card bg-white rounded p-4 d-flex">
-                            <div class="event-date">
-                                <div class="day">22</div>
-                                <div class="month">MAR</div>
-                            </div>
-                            <div>
-                                <h4>Community Iftar Program</h4>
-                                <p class="text-muted"><i class="fas fa-clock me-2"></i>6:00 PM - 8:00 PM</p>
-                                <p>Join us for a community iftar to break our fast together during Ramadan. Open to all community members.</p>
-                                <a href="#" class="btn btn-sm btn-primary">Register</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <div class="event-card bg-white rounded p-4 d-flex">
-                            <div class="event-date">
-                                <div class="day">10</div>
-                                <div class="month">APR</div>
-                            </div>
-                            <div>
-                                <h4>Eid al-Fitr Celebration</h4>
-                                <p class="text-muted"><i class="fas fa-clock me-2"></i>7:00 AM - 12:00 PM</p>
-                                <p>Celebrate Eid al-Fitr with special prayers, community greetings, and activities for children.</p>
-                                <a href="#" class="btn btn-sm btn-primary">Details</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <div class="event-card bg-white rounded p-4 d-flex">
-                            <div class="event-date">
-                                <div class="day">25</div>
-                                <div class="month">APR</div>
-                            </div>
-                            <div>
-                                <h4>Quran Competition</h4>
-                                <p class="text-muted"><i class="fas fa-clock me-2"></i>9:00 AM - 4:00 PM</p>
-                                <p>Annual Quran recitation competition for children and youth. Categories for memorization and tajweed.</p>
-                                <a href="#" class="btn btn-sm btn-primary">Register</a>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+                    $sql = "SELECT * FROM events ORDER BY event_date ASC";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            $date_parts = explode('-', $row['event_date']);
+                            $day = ltrim($date_parts[2], '0');
+                            $month = date('M', mktime(0, 0, 0, $date_parts[1], 10));
+                            echo '<div class="col-lg-6">
+                                    <div class="event-card bg-white rounded p-4 d-flex">
+                                        <div class="event-date">
+                                            <div class="day">' . $day . '</div>
+                                            <div class="month">' . strtoupper($month) . '</div>
+                                        </div>
+                                        <div>
+                                            <h4>' . htmlspecialchars($row['title']) . '</h4>
+                                            <p class="text-muted"><i class="fas fa-clock me-2"></i>' . htmlspecialchars($row['event_time']) . '</p>
+                                            <p>' . htmlspecialchars($row['description']) . '</p>
+                                            <a href="#" class="btn btn-sm btn-primary">Learn More</a>
+                                        </div>
+                                    </div>
+                                  </div>';
+                        }
+                    } else {
+                        echo '<p class="text-center">No upcoming events at the moment.</p>';
+                    }
+                    ?>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Bayans Page -->
-    <section id="bayans" class="page-section">
-        <div class="hero-section">
+    <!-- Bayan Page -->
+    <section id="bayan" class="page-section">
+        <div class="hero-section" style="background-image: linear-gradient(rgba(0, 128, 128, 0.85), rgba(0, 128, 128, 0.75)), url('https://images.unsplash.com/photo-1584556818267-697ed42777e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+            <img src="https://images.unsplash.com/photo-1591607388347-9ce64adcb3a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80" alt="Bayan Overlay" class="hero-image-overlay">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
-                        <div class="hero-content">
-                            <h1>Islamic Bayans</h1>
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#" onclick="showPage('home')" class="text-white">Home</a></li>
-                                    <li class="breadcrumb-item text-white-50 active">Bayans</li>
-                                </ol>
-                            </nav>
-                        </div>
+                        <h1>Islamic Bayan</h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#" onclick="showPage('home')" class="text-white">Home</a></li>
+                                <li class="breadcrumb-item text-white-50 active">Bayan</li>
+                            </ol>
+                        </nav>
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="content-section">
             <div class="container">
                 <div class="text-center mb-5">
-                    <h2 class="section-title text-center">Friday Bayans & Religious Talks</h2>
-                    <p class="lead">Listen to our collection of bayans and religious talks for spiritual growth and Islamic knowledge.</p>
+                    <h2 class="section-title text-center">Friday Bayan & Religious Talks</h2>
+                    <p class="lead">Listen to our collection of bayan and religious talks for spiritual growth and Islamic knowledge.</p>
                 </div>
-
                 <div class="row g-4">
-                    <div class="col-lg-6">
-                        <div class="bayans-card bg-white rounded p-4">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h4 class="mb-0">The Importance of Sincerity</h4>
-                                <span class="badge bg-primary">New</span>
-                            </div>
-                            <p class="text-muted mb-3"><i class="fas fa-calendar me-2"></i>March 10, 2025 | <i class="fas fa-user me-2"></i>Sheikh Ahmed</p>
-                            <p class="mb-3">This bayan discusses the concept of Ikhlas (sincerity) in worship and how it transforms our actions and brings us closer to Allah.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <a href="#" class="btn btn-sm btn-primary">Listen Now</a>
-                                <span class="text-muted"><i class="fas fa-clock me-1"></i>25 min</span>
-                            </div>
+                    <?php
+                    $sql = "SELECT * FROM bayan ORDER BY date DESC";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            $badge = (strtotime($row['date']) > time() - 604800) ? '<span class="badge bg-primary">New</span>' : '<span class="badge bg-secondary">Archived</span>';
+                            echo '<div class="col-lg-6">
+                                    <div class="sermon-card bg-white rounded p-4">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <h4 class="mb-0">' . htmlspecialchars($row['title']) . '</h4>
+                                            ' . $badge . '
+                                        </div>
+                                        <p class="text-muted mb-3"><i class="fas fa-calendar me-2"></i>' . date('F d, Y', strtotime($row['date'])) . ' | <i class="fas fa-user me-2"></i>' . htmlspecialchars($row['speaker']) . '</p>
+                                        <p class="mb-3">' . htmlspecialchars($row['description']) . '</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <a href="#" class="btn btn-sm btn-primary">Listen Now</a>
+                                            <span class="text-muted"><i class="fas fa-clock me-1"></i>' . htmlspecialchars($row['duration']) . '</span>
+                                        </div>
+                                    </div>
+                                  </div>';
+                        }
+                    } else {
+                        echo '<p class="text-center">No bayan available at the moment.</p>';
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Page -->
+    <section id="gallery" class="page-section">
+        <div class="hero-section" style="background-image: linear-gradient(rgba(0, 128, 128, 0.85), rgba(0, 128, 128, 0.75)), url('https://images.unsplash.com/photo-1519742866993-66d3cf21bb17?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h1>Gallery</h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#" onclick="showPage('home')" class="text-white">Home</a></li>
+                                <li class="breadcrumb-item text-white-50 active">Gallery</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="section-title text-center">Our Moments</h2>
+                    <p class="lead">Explore photos from our community events, prayers, and activities.</p>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="mosque-gallery">
+                            <img src="https://images.unsplash.com/photo-1543362453-624bf73af4de?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80" alt="Community Prayer">
                         </div>
                     </div>
-
-                    <div class="col-lg-6">
-                        <div class="bayans-card bg-white rounded p-4">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h4 class="mb-0">Patience in Trials</h4>
-                                <span class="badge bg-secondary">Last Week</span>
-                            </div>
-                            <p class="text-muted mb-3"><i class="fas fa-calendar me-2"></i>March 3, 2025 | <i class="fas fa-user me-2"></i>Sheikh Ahmed</p>
-                            <p class="mb-3">Exploring the Islamic perspective on patience during difficult times and how trials can become opportunities for spiritual growth.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <a href="#" class="btn btn-sm btn-primary">Listen Now</a>
-                                <span class="text-muted"><i class="fas fa-clock me-1"></i>32 min</span>
-                            </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="mosque-gallery">
+                            <img src="https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80" alt="Eid Celebration">
                         </div>
                     </div>
-
-                    <div class="col-lg-6">
-                        <div class="bayans-card bg-white rounded p-4">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h4 class="mb-0">Building Family Bonds</h4>
-                                <span class="badge bg-secondary">2 Weeks Ago</span>
-                            </div>
-                            <p class="text-muted mb-3"><i class="fas fa-calendar me-2"></i>February 24, 2025 | <i class="fas fa-user me-2"></i>Sheikh Ahmed</p>
-                            <p class="mb-3">Islamic guidance on strengthening family relationships and creating harmonious homes based on mutual respect and love.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <a href="#" class="btn btn-sm btn-primary">Listen Now</a>
-                                <span class="text-muted"><i class="fas fa-clock me-1"></i>28 min</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <div class="bayans-card bg-white rounded p-4">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h4 class="mb-0">Gratitude in Islam</h4>
-                                <span class="badge bg-secondary">3 Weeks Ago</span>
-                            </div>
-                            <p class="text-muted mb-3"><i class="fas fa-calendar me-2"></i>February 17, 2025 | <i class="fas fa-user me-2"></i>Sheikh Ahmed</p>
-                            <p class="mb-3">Understanding the importance of gratitude in Islam and practical ways to express thankfulness to Allah in our daily lives.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <a href="#" class="btn btn-sm btn-primary">Listen Now</a>
-                                <span class="text-muted"><i class="fas fa-clock me-1"></i>30 min</span>
-                            </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="mosque-gallery">
+                            <img src="https://images.unsplash.com/photo-1601597111152-f4ff63471b0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80" alt="Quran Class">
                         </div>
                     </div>
                 </div>
@@ -1368,95 +1029,50 @@
 
     <!-- Contact Page -->
     <section id="contact" class="page-section">
-        <div class="hero-section">
+        <div class="hero-section" style="background-image: linear-gradient(rgba(0, 128, 128, 0.85), rgba(0, 128, 128, 0.75)), url('https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80');">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
-                        <div class="hero-content">
-                            <h1>Contact Us</h1>
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#" onclick="showPage('home')" class="text-white">Home</a></li>
-                                    <li class="breadcrumb-item text-white-50 active">Contact</li>
-                                </ol>
-                            </nav>
-                        </div>
+                        <h1>Contact Us</h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#" onclick="showPage('home')" class="text-white">Home</a></li>
+                                <li class="breadcrumb-item text-white-50 active">Contact</li>
+                            </ol>
+                        </nav>
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="content-section">
             <div class="container">
                 <div class="text-center mb-5">
-                    <h2 class="section-title text-center">Get In Touch</h2>
-                    <p class="lead">M S M Riyas, President of Masjidhul Hassaniya — Mobile: <strong>076 764 6614</strong></p>
+                    <h2 class="section-title text-center">Get in Touch</h2>
+                    <p class="lead">We'd love to hear from you. Reach out with any questions or feedback.</p>
                 </div>
-
-                <div class="row g-5">
-                    <div class="col-lg-7">
-                        <div class="bg-light rounded p-4 p-md-5">
-                            <h3 class="mb-4">Send us a Message</h3>
-                            <form>
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="Your Name" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="email" class="form-control" placeholder="Your Email" required>
-                                    </div>
-                                    <div class="col-12">
-                                        <input type="text" class="form-control" placeholder="Subject" required>
-                                    </div>
-                                    <div class="col-12">
-                                        <textarea class="form-control" rows="5" placeholder="Message" required></textarea>
-                                    </div>
-                                    <div class="col-12">
-                                        <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <form>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" id="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
                     </div>
-                    <div class="col-lg-5">
-                        <div class="bg-primary text-white rounded p-4 p-md-5">
-                            <h3 class="mb-4">Contact Information</h3>
-                            <div class="mb-4">
-                                <div class="d-flex align-items-center mb-3">
-                                    <i class="fas fa-map-marker-alt fa-2x me-3"></i>
-                                    <div>
-                                        <h5>Our Address</h5>
-                                        <p class="mb-0">Ethungahakotuwa Village, Udubaddawa, Kurunegala District, Sri Lanka</p>
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-center mb-3">
-                                    <i class="fas fa-phone-alt fa-2x me-3"></i>
-                                    <div>
-                                        <h5>Call Us</h5>
-                                        <p class="mb-0">+94 76 764 6614</p>
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-center mb-3">
-                                    <i class="fas fa-envelope fa-2x me-3"></i>
-                                    <div>
-                                        <h5>Email Us</h5>
-                                        <p class="mb-0">info@almasjidulhasaniyya.org</p>
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-center">
-                                    <i class="fas fa-clock fa-2x me-3"></i>
-                                    <div>
-                                        <h5>Open Hours</h5>
-                                        <p class="mb-0">Monday - Sunday: 5:00 AM - 10:00 PM</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mt-4">
-                                <a href="https://wa.me/94767646614?text=Assalamu%20Alaikum!%20I%20would%20like%20to%20get%20more%20information%20about%20Al-Masjidul%20Hasaniyya%20Mosque" class="btn btn-success btn-lg w-100" target="_blank">
-                                    <i class="fab fa-whatsapp me-2"></i> Contact via WhatsApp
-                                </a>
-                            </div>
-                        </div>
+                    <div class="col-lg-6">
+                        <h3>Contact Information</h3>
+                        <p><i class="fas fa-map-marker-alt me-2"></i>Ethungahakotuwa, Udubaddawa, Kurunegala District, Sri Lanka</p>
+                        <p><i class="fas fa-phone me-2"></i>+94 76 764 6614</p>
+                        <p><i class="fas fa-envelope me-2"></i>info@almasjidulhasaniyya.org</p>
                     </div>
                 </div>
             </div>
@@ -1465,96 +1081,41 @@
 
     <!-- Donate Page -->
     <section id="donate" class="page-section">
-        <div class="hero-section">
+        <div class="hero-section" style="background-image: linear-gradient(rgba(0, 128, 128, 0.85), rgba(0, 128, 128, 0.75)), url('https://images.unsplash.com/photo-1591607388347-9ce64adcb3a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80');">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
-                        <div class="hero-content">
-                            <h1>Support Our Mosque</h1>
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#" onclick="showPage('home')" class="text-white">Home</a></li>
-                                    <li class="breadcrumb-item text-white-50 active">Donate</li>
-                                </ol>
-                            </nav>
-                        </div>
+                        <h1>Support Our Mosque</h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#" onclick="showPage('home')" class="text-white">Home</a></li>
+                                <li class="breadcrumb-item text-white-50 active">Donate</li>
+                            </ol>
+                        </nav>
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="content-section">
             <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 mb-5 mb-lg-0">
-                        <h2 class="section-title">Your Contribution Makes a Difference</h2>
-                        <p class="mb-4">
-                            The construction of our new two-storey mosque is a community effort that requires your generous support. Your donations will help us complete this important project that will serve generations to come.
-                        </p>
-                        <p class="mb-4">
-                            "The example of those who spend their wealth in the way of Allah is like a seed which grows seven spikes; in each spike is a hundred grains. And Allah multiplies for whom He wills." (Quran 2:261)
-                        </p>
-                        <div class="row mb-4">
-                            <div class="col-sm-6">
-                                <div class="d-flex align-items-center mb-3">
-                                    <i class="fas fa-check text-primary me-3"></i>
-                                    <span>Zakat Accepted</span>
-                                </div>
-                                <div class="d-flex align-items-center mb-3">
-                                    <i class="fas fa-check text-primary me-3"></i>
-                                    <span>Sadaqah Welcome</span>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="d-flex align-items-center mb-3">
-                                    <i class="fas fa-check text-primary me-3"></i>
-                                    <span>Construction Funds</span>
-                                </div>
-                                <div class="d-flex align-items-center mb-3">
-                                    <i class="fas fa-check text-primary me-3"></i>
-                                    <span>General Donations</span>
-                                </div>
-                            </div>
-                        </div>
+                <div class="text-center mb-5">
+                    <h2 class="section-title text-center">Make a Difference</h2>
+                    <p class="lead">Your generous donations help maintain our mosque and support our community programs.</p>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h3>Bank Details</h3>
+                        <p>Bank: Bank of Ceylon</p>
+                        <p>Account Name: Al-Masjidul Hasaniyya</p>
+                        <p>Account Number: 123456789</p>
+                        <p>Branch: Kurunegala</p>
                     </div>
                     <div class="col-lg-6">
-                        <div class="bg-light rounded p-4 p-md-5">
-                            <h3 class="mb-4">Make a Donation</h3>
-                            <form>
-                                <div class="mb-3">
-                                    <label class="form-label">Full Name</label>
-                                    <input type="text" class="form-control" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Email Address</label>
-                                    <input type="email" class="form-control" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Phone Number</label>
-                                    <input type="tel" class="form-control" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Donation Amount (LKR)</label>
-                                    <input type="number" class="form-control" placeholder="Enter amount" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Donation Type</label>
-                                    <select class="form-select" required>
-                                        <option value="">Select donation type</option>
-                                        <option>General Donation</option>
-                                        <option>Zakat</option>
-                                        <option>Sadaqah</option>
-                                        <option>Construction Fund</option>
-                                        <option>Education Fund</option>
-                                    </select>
-                                </div>
-                                <div class="mb-4">
-                                    <label class="form-label">Message (Optional)</label>
-                                    <textarea class="form-control" rows="3"></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary btn-lg w-100">Donate Now</button>
-                            </form>
+                        <h3>Progress</h3>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
                         </div>
+                        <p class="mt-3">We’ve raised 75% of our goal for the mosque renovation project. Help us reach 100%!</p>
                     </div>
                 </div>
             </div>
@@ -1564,56 +1125,31 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="row g-5">
+            <div class="row">
                 <div class="col-lg-4">
-                    <h3 class="text-white mb-4"><i class="fas fa-mosque me-2"></i>AL-MASJIDUL<span class="text-primary"> HASSANIYYA</span></h3>
-                    <p class="mb-4">Ethungahakotuwa Village, Udubaddawa, Kurunegala District, Sri Lanka. Serving the community with faith, knowledge and charity.</p>
-                    <a href="#" class="btn btn-primary" onclick="showPage('donate')">Donate Now</a>
+                    <h4>About Us</h4>
+                    <p>Al-Masjidul Hasaniyya is dedicated to serving the Muslim community in Ethungahakotuwa through worship, education, and welfare programs.</p>
                 </div>
                 <div class="col-lg-4">
-                    <h4 class="text-white mb-4">Quick Links</h4>
+                    <h4>Quick Links</h4>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#" onclick="showPage('home')" class="text-white-50 text-decoration-none">Home</a></li>
-                        <li class="mb-2"><a href="#" onclick="showPage('about')" class="text-white-50 text-decoration-none">About Us</a></li>
-                        <li class="mb-2"><a href="#" onclick="showPage('activities')" class="text-white-50 text-decoration-none">Activities</a></li>
-                        <li class="mb-2"><a href="#" onclick="showPage('events')" class="text-white-50 text-decoration-none">Events</a></li>
-                        <li class="mb-2"><a href="#" onclick="showPage('bayans')" class="text-white-50 text-decoration-none">Bayans</a></li>
-                        <li class="mb-2"><a href="#" onclick="showPage('contact')" class="text-white-50 text-decoration-none">Contact</a></li>
+                        <li><a href="#" onclick="showPage('home')">Home</a></li>
+                        <li><a href="#" onclick="showPage('about')">About</a></li>
+                        <li><a href="#" onclick="showPage('activities')">Activities</a></li>
+                        <li><a href="#" onclick="showPage('events')">Events</a></li>
+                        <li><a href="#" onclick="showPage('bayan')">Bayan</a></li>
+                        <li><a href="#" onclick="showPage('contact')">Contact</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4">
-                    <h4 class="text-white mb-4">Prayer Times</h4>
-                    <div class="text-white-50">
-                        <div class="d-flex justify-content-between border-bottom border-secondary py-2">
-                            <span>Fajr</span>
-                            <span>5:00 AM</span>
-                        </div>
-                        <div class="d-flex justify-content-between border-bottom border-secondary py-2">
-                            <span>Dhuhr</span>
-                            <span>12:30 PM</span>
-                        </div>
-                        <div class="d-flex justify-content-between border-bottom border-secondary py-2">
-                            <span>Asr</span>
-                            <span>4:00 PM</span>
-                        </div>
-                        <div class="d-flex justify-content-between border-bottom border-secondary py-2">
-                            <span>Maghrib</span>
-                            <span>Sunset</span>
-                        </div>
-                        <div class="d-flex justify-content-between py-2">
-                            <span>Isha</span>
-                            <span>7:30 PM</span>
-                        </div>
-                    </div>
-                    <div class="mt-4">
-                        <a href="https://wa.me/94767646614?text=Assalamu%20Alaikum!%20I%20would%20like%20to%20get%20more%20information%20about%20Al-Masjidul%20Hasaniyya%20Mosque" class="btn btn-success btn-sm" target="_blank">
-                            <i class="fab fa-whatsapp me-2"></i> Contact via WhatsApp
-                        </a>
-                    </div>
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-map-marker-alt me-2"></i>Ethungahakotuwa, Udubaddawa, Kurunegala District</p>
+                    <p><i class="fas fa-phone me-2"></i>+94 76 764 6614</p>
+                    <p><i class="fas fa-envelope me-2"></i>info@almasjidulhasaniyya.org</p>
                 </div>
             </div>
-            <div class="border-top border-secondary mt-5 pt-4 text-center">
-                <p class="mb-0">&copy; 2025 Al-Masjidul Hasaniyya Mosque. All rights reserved.</p>
+            <div class="text-center mt-5">
+                <p>&copy; 2025 Al-Masjidul Hasaniyya. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
@@ -1625,34 +1161,21 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <script>
         // Page navigation function
         function showPage(pageId) {
-            // Hide all pages
             document.querySelectorAll('.page-section').forEach(page => {
                 page.classList.remove('active');
             });
-            
-            // Show selected page
             document.getElementById(pageId).classList.add('active');
-            
-            // Update active nav link
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
-            });
-            
-            // Find and activate the corresponding nav link
-            document.querySelectorAll('.nav-link').forEach(link => {
-                if (link.textContent.toLowerCase() === pageId.toLowerCase() || 
-                    (pageId === 'home' && link.textContent === 'Home')) {
+                if (link.textContent.toLowerCase() === pageId.toLowerCase()) {
                     link.classList.add('active');
                 }
             });
-            
-            // Scroll to top
-            window.scrollTo(0, 0);
-            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             return false;
         }
 
@@ -1660,7 +1183,7 @@
         window.addEventListener('load', function() {
             setTimeout(function() {
                 document.getElementById('spinner').style.display = 'none';
-            }, 500);
+            }, 1000);
         });
 
         // Back to top button
@@ -1675,7 +1198,7 @@
 
         document.querySelector('.back-to-top').addEventListener('click', function(e) {
             e.preventDefault();
-            window.scrollTo({top: 0, behavior: 'smooth'});
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
         // Initialize the page
@@ -1683,7 +1206,7 @@
             showPage('home');
         });
 
-        // Add animation classes to elements when they come into view
+        // Intersection Observer for animations
         const observerOptions = {
             root: null,
             rootMargin: '0px',
@@ -1698,8 +1221,7 @@
             });
         }, observerOptions);
 
-        // Observe all cards and sections
-        document.querySelectorAll('.activity-card, .event-card, .bayans-card, .section-title').forEach(el => {
+        document.querySelectorAll('.activity-card, .event-card, .sermon-card, .section-title, .mosque-gallery').forEach(el => {
             observer.observe(el);
         });
     </script>
